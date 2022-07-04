@@ -8,3 +8,4 @@ HTTP-API build with Go
 
 ## Features:
 -[x] Model 'Weapon' with CRUD operations
+-[x] Model 'User' with CRUD operations and hooks on password field
