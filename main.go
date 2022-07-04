@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"go-first-api/models"
-	"go-first-api/weapons"
+	"go-first-api/models/users"
+	"go-first-api/models/weapons"
 	"net/http"
 	"os"
 
@@ -35,7 +36,8 @@ func main() {
 		})
 	})
 
-	weapons.InitWeapon(&router.RouterGroup)
+	weapons.Init(&router.RouterGroup)
+	users.Init(&router.RouterGroup)
 
 	router.Run("localhost:" + port)
 }

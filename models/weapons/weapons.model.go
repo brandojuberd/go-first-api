@@ -10,11 +10,12 @@ import (
 
 type Weapon struct {
 	gorm.Model
+	ID         uint   `json:"ID"`
 	Name       string `json:"name"`
 	Ammunition int    `json:"ammunition"`
 }
 
-func InitWeapon(rg *gin.RouterGroup) {
+func Init(rg *gin.RouterGroup) {
 	models.DB.AutoMigrate(&Weapon{})
 	Routes(rg)
 	// models.DB.Create(&Weapon{Name: "D42", Ammunition: 100})
@@ -36,17 +37,17 @@ func GetList() []Weapon {
 
 func Create(input UpsertWeaponInput) Weapon {
 	weapon := Weapon{
-		Name: input.Name,
+		Name:       input.Name,
 		Ammunition: input.Ammunition,
 	}
 	models.DB.Model(&Weapon{}).Create(&weapon)
 	return weapon
 }
 
-func Update(weaponId string, updateInput UpsertWeaponInput) Weapon{
+func Update(weaponId string, updateInput UpsertWeaponInput) Weapon {
 	var currentWeapon = FindById(weaponId)
 	var weapon = Weapon{
-		Name: updateInput.Name,
+		Name:       updateInput.Name,
 		Ammunition: updateInput.Ammunition,
 	}
 	models.DB.Model(&currentWeapon).Where("id", weaponId).Updates(weapon)
