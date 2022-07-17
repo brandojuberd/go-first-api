@@ -17,7 +17,10 @@ var ginMode = "development"
 
 func main() {
 
-	godotenv.Load("development.env")
+	err := godotenv.Load("development.env")
+	if(err != nil){
+		fmt.Println(err)
+	}
 	port = os.Getenv("PORT")
 	ginMode = os.Getenv("GIN_MODE")
 	fmt.Println(port, ginMode)
@@ -39,7 +42,7 @@ func main() {
 	weapons.Init(&router.RouterGroup)
 	users.Init(&router.RouterGroup)
 
-	router.Run("localhost:" + port)
+	router.Run(":" + port)
 }
 
 

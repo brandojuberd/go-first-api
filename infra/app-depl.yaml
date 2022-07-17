@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment # Pod, Deployment, Service
+metadata:
+  name: go-first-api-depl
+spec:
+  replicas: 1
+  selector: # to search what pod this deployment should manage
+    matchLabels:
+      pod-label: go-first-api-pod
+  template:
+    metadata: # add metadata so it can be selected
+      labels:
+        pod-label: go-first-api-pod 
+    spec:
+      containers:
+        - name: go-first-api
+          image: brando/go/first-api
+          imagePullPolicy: Never # to ensure k8s will use image built locally

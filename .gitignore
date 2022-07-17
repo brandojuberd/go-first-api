@@ -16,3 +16,6 @@
 
 #env setup
 *.env
+
+#air setup
+/tmp
