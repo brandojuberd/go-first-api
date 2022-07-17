@@ -1,6 +1,6 @@
 # GO-FIRST-API
 
-HTTP-API build with Go  
+HTTP-API build with Go. I have create a CLI app using Go to learn the basics and decided to learn more about the language by creating an API using HTTP protocol with Gin framework and use GORM to connect with SQL database, also I implement some basic infrastructure deployment using Docker and Kubernetes.
 
 ## Stacks:
 - Gin
