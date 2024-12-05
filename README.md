@@ -14,6 +14,21 @@ HTTP-API build with Go. I have create a CLI app using Go to learn the basics and
 
 ## Command:
 
+Development
+1. Set development.env
+2. Run docker compose
+```
+docker compose up -d
+```
+3. Attach to the container
+```
+docker exec -i -t go-first-api-dev bash
+```
+4. Inside container run
+```
+air
+```
+
 Run with Kubernetes
 1. Set Env
 2. Build docker image. Image name should be same on the kubernetes configuration

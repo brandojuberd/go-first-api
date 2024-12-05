@@ -22,15 +22,22 @@ func InitDatabaseConnection() {
 	user := os.Getenv("DB_USER")
 	password := os.Getenv("DB_PASSWORD")
 	host := os.Getenv("DB_HOST")
-	fmt.Println(host, user, password, user)
+	port := os.Getenv("DB_PORT")
+	dbName := os.Getenv("DB_NAME")
+	fmt.Println(host, port, dbName, user, password)
+
+	fmt.Println("Success connect/create to db: " + dbName)
+
 	dsn := url.URL{
 		User:     url.UserPassword(user, password),
 		Scheme:   "postgres",
-		Host:     fmt.Sprintf("%s:%d", host, 5432),
-		Path:     "golang-gorm-test",
+		Host:     fmt.Sprintf("%s:%s", host, port),
+		Path:     dbName,
 		RawQuery: (&url.Values{"sslmode": []string{"disable"}}).Encode(),
 	}
+
 	db, err := gorm.Open(postgres.Open(dsn.String()), &gorm.Config{})
+
 	if err != nil {
 		panic("failed to connect database")
 	}

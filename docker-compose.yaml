@@ -10,15 +10,23 @@ version: '2.3'
 #     volumes:
 #       - ./:/app
 services:
-  my-project-with-air:
+   go-first-api-dev:
+    container_name: go-first-api-dev
     image: cosmtrek/air
+    environment:
+      # - GOPRIVATE=*
+      - ENV CGO_ENABLED=0
+
     # working_dir value has to be the same of mapped volume
-    working_dir: /app-inside-docker
+    working_dir: /home/go-first-api
     ports:
       - 3000:3000
+      # - 5432:5432
     # environment:
     #   - ENV_A=${ENV_A}
     #   - ENV_B=${ENV_B}
     #   - ENV_C=${ENV_C}
     volumes:
-      - ./:/app-inside-docker/
+      - ./:/home/go-first-api
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
